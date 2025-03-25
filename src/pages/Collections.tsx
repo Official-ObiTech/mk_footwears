@@ -5,10 +5,20 @@ import FilterSideBar from "../components/Products/FilterSideBar";
 import SortOptions from "../components/Products/SortOptions";
 import ProductGrid from "../components/Products/ProductGrid";
 
+interface FetchedProduct {
+  _id: string;
+  name: string;
+  price: number;
+  images: {
+    url: string;
+  }[];
+}
+[];
+
 const Collections = () => {
   // DECLARE USE STATES
-  const [products, setProducts] = useState([]);
-  const sideBarRef = useRef(null);
+  const [products, setProducts] = useState<FetchedProduct[]>([]);
+  const sideBarRef = useRef<HTMLDivElement | null>(null);
   const [isSideBarOpen, setIsSideBarOpen] = useState(false);
 
   // DECLARE VARIBLES
@@ -34,49 +44,49 @@ const Collections = () => {
     setTimeout(() => {
       const fetchedProduct = [
         {
-          _id: 1,
+          _id: "1",
           name: "Product 1",
           price: 15000,
           images: [{ url: menProducts }],
         },
         {
-          _id: 2,
+          _id: "2",
           name: "Product 2",
           price: 15000,
           images: [{ url: menProducts }],
         },
         {
-          _id: 3,
+          _id: "3",
           name: "Product 3",
           price: 15000,
           images: [{ url: menProducts }],
         },
         {
-          _id: 4,
+          _id: "4",
           name: "Product 4",
           price: 15000,
           images: [{ url: menProducts }],
         },
         {
-          _id: 5,
+          _id: "5",
           name: "Product 1",
           price: 15000,
           images: [{ url: menProducts }],
         },
         {
-          _id: 6,
+          _id: "6",
           name: "Product 2",
           price: 15000,
           images: [{ url: menProducts }],
         },
         {
-          _id: 7,
+          _id: "7",
           name: "Product 3",
           price: 15000,
           images: [{ url: menProducts }],
         },
         {
-          _id: 8,
+          _id: "8",
           name: "Product 4",
           price: 15000,
           images: [{ url: menProducts }],

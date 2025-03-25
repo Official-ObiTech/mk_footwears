@@ -2,8 +2,20 @@ import { useEffect, useState } from "react";
 import productImage from "../../assets/topwear.jpg";
 import { useNavigate } from "react-router-dom";
 
+interface Order {
+  _id: string;
+  createdAt: string;
+  shippingAddress: {
+    city: string;
+    country: string;
+  };
+  orderItems: { name: string; image: string }[];
+  totalPrice: number;
+  isPaid: boolean;
+}
+
 const MyOrder = () => {
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState<Order[]>([]);
   const navigate = useNavigate();
 
   const handleRowClick = (orderId: string) => {
@@ -82,12 +94,17 @@ const MyOrder = () => {
                       : "N/A"}
                   </td>
                   <td className="p-2 sm:p-4">{order.orderItems.length}</td>
-                  <td className="p-2 sm:p-4">{order.totalPrice}</td>
+                  <td className="p-2 sm:p-4">
+                    {new Intl.NumberFormat("en-NG", {
+                      style: "currency",
+                      currency: "NGN",
+                    }).format(order.totalPrice)}
+                  </td>
                   <td className="p-2 sm:p-4">
                     <span
                       className={`${
                         order.isPaid ? "bg-green-300 " : "bg-orange-200"
-                      } , px-4 py-1 rounded`}
+                      }  px-4 py-1 rounded`}
                     >
                       {order.isPaid ? "Paid" : "Pending"}
                     </span>

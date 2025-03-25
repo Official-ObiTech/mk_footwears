@@ -2,9 +2,29 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import topeImage from "../assets/topwear.jpg";
 
+interface OrderDetails {
+  _id: string | undefined;
+  createdAt: Date;
+  isPaid: boolean;
+  isDelivered: boolean;
+  paymentMethod: string;
+  shippingMethos: string;
+  shippingAddress: {
+    city: string;
+    country: string;
+  };
+  orderItems: {
+    productId: string;
+    name: string;
+    price: number;
+    quantity: number;
+    image: string;
+  }[];
+}
+
 const OrderDetails = () => {
   const { id } = useParams();
-  const [orderDetails, setOrderDetails] = useState(null);
+  const [orderDetails, setOrderDetails] = useState<OrderDetails | null>(null);
 
   useEffect(() => {
     const mockOrderDetails = {

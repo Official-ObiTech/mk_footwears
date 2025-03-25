@@ -2,7 +2,7 @@ import { useState } from "react";
 import allImages from "../../assets/shoeoffice.jpg";
 
 const EditProduct = () => {
-  const [productData, setProductData] = useState({
+  const [productData, setProductData] = useState<string[]>({
     name: "",
     description: "",
     price: 0,
