@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+#root {
+  /* font-family: "ubuntu", sans-serif; */
+  font-family: "Gabriela", cursive;
+  font-weight: 200;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+@layer utilities {
+  /* background color  */
+  .bg-primary {
+    @apply bg-sky-500;
+  }
+  .bg-secondary {
+    @apply bg-sky-950;
+  }
+
+  /* Text color  */
+  .text-primary {
+    @apply text-gray-700;
+  }
+  .text-secondary {
+    @apply text-gray-100;
+  }
+
+  /* link states */
+  .link {
+    @apply hover:text-sky-300 text-gray-100;
+  }
+
+  .light_link {
+    @apply text-gray-700 hover:text-gray-500;
+  }
+
+  /* icon size and color */
+  .icons {
+    @apply text-2xl;
+  }
+
+  /* justify container  */
+  .justify_container {
+    @apply container mx-auto flex items-center justify-between py-2 px-6;
+  }
+
+  /* justify flex  */
+  .justify_flex {
+    @apply w-full flex justify-center items-center;
+  }
+
+  .input {
+    @apply focus:outline-none focus:border-y-2 focus:border-l-2 rounded-tl rounded-bl border-sky-500 p-2 w-full placeholder:text-gray-400 text-sm  transition-all;
+  }
+
+  .input_btn {
+    @apply bg-sky-950 py-2 px-4 hover:text-sky-300 text-gray-100 cursor-pointer rounded-tr rounded-br transition-all;
+  }
+
+  /* Navigation Start Css  */
+
+  /* Navigation bottom border */
+  .nav_link {
+    position: relative;
+    color: #364153; /* Ensure you define this variable */
+    text-transform: capitalize;
+  }
+
+  .nav_link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: #052f4a; /* Ensure this variable is defined */
+    transition: width 0.3s ease-in-out;
+  }
+
+  .nav_link:hover::after {
+    width: 100%;
+  }
+
+  .nav_link:active::after {
+    width: 100%;
+    background: #052f4a;
+  }
+
+  .cart_icon {
+    @apply absolute rounded-full text-gray-100 px-1 font-black py-0.5 bg-red-500 -top-1 text-[0.60rem];
+  }
+
+  /* Search button  start  */
+  .search_container {
+    @apply absolute top-0 left-0 w-full bg-white backdrop-blur-3xl h-24 z-50;
+  }
+  /* Search button  end  */
+
+  /* Navigation Stop Css  */
+
+  /* Cart product start css  */
+  .product_btn {
+    @apply cursor-pointer ring ring-sky-500 rounded px-2 hover:scale-90;
+  }
+  /* Cart product stop css  */
+
+  /* Footer start css  */
+  .footer_header {
+    @apply text-xl text-gray-800 mb-3;
+  }
+  /* Footer stop css  */
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}
+
+/* ANIMATIONS  */
+.shop {
+  animation: grow 3s infinite linear;
+}
+
+@keyframes grow {
+  0%,
+  100% {
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+  }
+  50% {
+    box-shadow: 0 0 50px rgba(255, 255, 255, 1);
+  }
+}
+
+/* .anime_btn::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    180deg,
+    rgb(5, 76, 104),
+    rgba(255, 48, 255)
+  );
+  animation: rounded 3s linear infinite;
+  transition: all 0.2s linear;
+}
+
+.anime_btn::after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border-radius: 15px;
+  background-color: #1c1b29;
+}
+
+@keyframes rounded {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
+
+/* ANIMATIONS END  */
