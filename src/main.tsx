@@ -15,7 +15,7 @@ createRoot(document.getElementById("root")!).render(
  
 
 
-    <App />
+
     <App />
     <App />
     <App />
