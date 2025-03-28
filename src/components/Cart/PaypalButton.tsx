@@ -1,17 +1,29 @@
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 
-const PaypalButton = ({ amount, onSuccess, onError }) => {
+interface PaypalButtonProps {
+  amount: string;
+  onSuccess: (details: any) => void;
+  onError: (error: any) => void;
+}
+
+const PaypalButton = ({ amount, onSuccess, onError }: PaypalButtonProps) => {
   return (
-    <PayPalScriptProvider options={{ "client-id": "" }}>
+    <PayPalScriptProvider options={{ clientId: "" }}>
       <PayPalButtons
         style={{ layout: "vertical" }}
-        createOrder={(data, actions) => {
+        createOrder={(_, actions) => {
           return actions.order.create({
-            purchase_units: [{ amount: { value: amount } }],
+            purchase_units: [
+              { amount: { currency_code: "USD", value: amount } },
+            ],
+            intent: "CAPTURE",
           });
         }}
-        onApprove={(data, actions) => {
-          return actions.order.caption().then(onSuccess);
+        onApprove={(_, actions) => {
+          if (actions.order) {
+            return actions.order.capture().then(onSuccess);
+          }
+          return Promise.reject(new Error("Order is undefined"));
         }}
         onError={onError}
       ></PayPalButtons>

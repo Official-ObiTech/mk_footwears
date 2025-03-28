@@ -32,7 +32,7 @@ const OrderConfirmation = () => {
     },
   };
 
-  const calculateEstimatedDelivery = (createdAt) => {
+  const calculateEstimatedDelivery = (createdAt:  number | string | Date ) => {
     const orderDate = new Date(createdAt);
     orderDate.setDate(orderDate.getDate() + 15);
     return orderDate.toLocaleDateString();

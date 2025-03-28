@@ -9,7 +9,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
 
   // DECLARE FUNCTIONS
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     console.log({ "forms ": { userName, email, password } });
@@ -34,7 +34,9 @@ const Register = () => {
             <input
               type="text"
               value={userName}
-              onChange={(e) => setuserName(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setuserName(e.target.value)
+              }
               className="input rounded-tr rounded-br focus:border-r-2"
               placeholder="Enter your username"
             />
@@ -44,7 +46,9 @@ const Register = () => {
             <input
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setEmail(e.target.value)
+              }
               className="input bg-sky-50 rounded-tr rounded-br focus:border-r-2"
               placeholder="Enter your email"
             />
@@ -54,7 +58,9 @@ const Register = () => {
             <input
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setPassword(e.target.value)
+              }
               className="input rounded-tr rounded-br focus:border-r-2"
               placeholder="Enter your password"
             />

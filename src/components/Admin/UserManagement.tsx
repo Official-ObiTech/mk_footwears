@@ -17,14 +17,16 @@ const UserManagement = () => {
     role: "customer", // Default role
   });
 
-  const handldChange = (e) => {
+  const handldChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(formData);
 
@@ -37,13 +39,13 @@ const UserManagement = () => {
     });
   };
 
-  const handleDeleteUser = (userId) => {
+  const handleDeleteUser = (userId: string) => {
     if (window.confirm("Are you sure you want to delete this user")) {
       console.log("Deleted User:", userId);
     }
   };
 
-  const handleRoleChange = (userId, newRole) => {
+  const handleRoleChange = (userId: string, newRole: string) => {
     console.log({ id: userId, role: newRole });
   };
 
@@ -140,7 +142,7 @@ const UserManagement = () => {
                       className="border border-gray-300 rounded outline-none focus:border-sky-500"
                       value={user.role}
                       onChange={(e) =>
-                        handleRoleChange(user._id, e.target.value)
+                        handleRoleChange(user._id.toString(), e.target.value)
                       }
                     >
                       <option value="customer">Customer</option>
@@ -151,7 +153,7 @@ const UserManagement = () => {
                     {" "}
                     <button
                       className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-                      onClick={() => handleDeleteUser(user._id)}
+                      onClick={() => handleDeleteUser(user._id.toString())}
                     >
                       Delete
                     </button>

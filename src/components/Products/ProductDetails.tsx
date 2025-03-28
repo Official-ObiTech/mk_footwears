@@ -12,7 +12,7 @@ const ProductDetails = () => {
   const [mainImage, setMainImage] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
-  const [quantity, setQuantity] = useState(1);
+  const [quantity ] = useState(1);
   const [isDisableButton, setIsDisableButton] = useState(false);
 
   // DECLARE VARIABLES

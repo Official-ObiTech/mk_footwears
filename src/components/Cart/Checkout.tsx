@@ -4,11 +4,21 @@ import { useState } from "react";
 import PaypalButton from "./PaypalButton";
 import { TbCurrencyNaira } from "react-icons/tb";
 
+interface ShippingAddress {
+  firstName: string;
+  lastName: string;
+  address: string;
+  city: string;
+  postalCode: string;
+  country: string;
+  phone: string;
+}
+
 const Checkout = () => {
   // DECLARE USE STATE
   const navigate = useNavigate();
-  const [checkoutId, setCheckoutId] = useState(null);
-  const [shippingAddress, setShippingAddress] = useState({
+  const [checkoutId, setCheckoutId] = useState<number | null>(null);
+  const [shippingAddress, setShippingAddress] = useState<ShippingAddress>({
     firstName: "",
     lastName: "",
     address: "",
@@ -41,14 +51,14 @@ const Checkout = () => {
   };
 
   //DECLARE FUNCTIONS
-  const handleCreateCheckout = (e) => {
+  const handleCreateCheckout = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     setCheckoutId(904);
     navigate("/order-confirmation");
   };
 
-  const handlePaymentSuccess = (details) => {
+  const handlePaymentSuccess = (details: any) => {
     console.log("Payment Success", details);
     navigate("/order-confirmation");
   };
@@ -89,7 +99,7 @@ const Checkout = () => {
                 type="text"
                 className="input focus:border-r-2 rounded-tr rounded-br outline-gray-300 outline"
                 value={shippingAddress.lastName}
-                onChange={(e) =>
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setShippingAddress({
                     ...shippingAddress,
                     lastName: e.target.value,
@@ -104,7 +114,7 @@ const Checkout = () => {
               type="text"
               className="input focus:border-r-2 rounded-tr rounded-br outline-gray-300 outline"
               value={shippingAddress.address}
-              onChange={(e) =>
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setShippingAddress({
                   ...shippingAddress,
                   address: e.target.value,
@@ -151,7 +161,7 @@ const Checkout = () => {
               type="text"
               className="input focus:border-r-2 rounded-tr rounded-br outline-gray-300 outline"
               value={shippingAddress.country}
-              onChange={(e) =>
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setShippingAddress({
                   ...shippingAddress,
                   country: e.target.value,
@@ -167,7 +177,7 @@ const Checkout = () => {
               type="tel"
               className="input focus:border-r-2 rounded-tr rounded-br outline-gray-300 outline"
               value={shippingAddress.phone}
-              onChange={(e) =>
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setShippingAddress({
                   ...shippingAddress,
                   phone: e.target.value,
@@ -189,9 +199,9 @@ const Checkout = () => {
               <div>
                 <h3 className="text-lg mb-4">Pay with Paypal</h3>
                 <PaypalButton
-                  amount={100}
+                  amount={(100).toString()}
                   onSuccess={handlePaymentSuccess}
-                  onError={(e) => alert("Payment failed. Try again")}
+                  onError={(_e) => alert("Payment failed. Try again")}
                 />
               </div>
             )}

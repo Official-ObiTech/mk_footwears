@@ -16,7 +16,6 @@ import Admin from "./pages/Admin";
 import UserManagement from "./components/Admin/UserManagement";
 import ProductManagement from "./components/Admin/ProductManagement";
 import OrderManagement from "./components/Admin/OrderManagement";
-import ShopManagement from "./components/Admin/ShopManagement";
 import EditProduct from "./components/Admin/EditProduct";
 
 function App() {

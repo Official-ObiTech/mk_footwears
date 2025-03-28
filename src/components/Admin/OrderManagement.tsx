@@ -1,7 +1,14 @@
-import { useState } from "react";
-
+interface Orders {
+  _id: number;
+  user: {
+    name: string;
+  };
+  totalPrice: number;
+  status: string;
+}
+[];
 const OrderManagement = () => {
-  const orders = [
+  const orders: Orders[] = [
     {
       _id: 1235765,
       user: {
@@ -12,7 +19,7 @@ const OrderManagement = () => {
     },
   ];
 
-  const handleStatusChange = (orderId, status) => {
+  const handleStatusChange = (orderId: number, status: string) => {
     console.log({ id: orderId, status });
   };
 
@@ -49,7 +56,7 @@ const OrderManagement = () => {
                     <select
                       className="border border-gray-300 rounded outline-none focus:border-sky-500"
                       value={order.status}
-                      onChange={(e) =>
+                      onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
                         handleStatusChange(order._id, e.target.value)
                       }
                     >

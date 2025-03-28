@@ -28,7 +28,7 @@ const MyOrder = () => {
       const mockOrder = [
         {
           _id: "12344",
-          createdAt: new Date(),
+          createdAt: new Date().toISOString(),
           shippingAddress: {
             city: "Abuja",
             country: "Nigeria",
@@ -39,7 +39,7 @@ const MyOrder = () => {
         },
         {
           _id: "13564",
-          createdAt: new Date(),
+          createdAt: new Date().toISOString(),
           shippingAddress: {
             city: "Abuja",
             country: "Nigeria",

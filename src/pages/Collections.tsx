@@ -28,7 +28,7 @@ const Collections = () => {
     setIsSideBarOpen(!isSideBarOpen);
   };
 
-  const handleClickOutSide = (e) => {
+  const handleClickOutSide = (e: any) => {
     if (sideBarRef.current && !sideBarRef.current.contains(e.target)) {
       setIsSideBarOpen(false);
     }
@@ -122,7 +122,7 @@ const Collections = () => {
         <SortOptions />
 
         {/* Product Grids */}
-        <ProductGrid products={products} />
+        <ProductGrid products={products.map(product => ({ ...product, _id: parseInt(product._id) }))} />
       </div>
     </div>
   );

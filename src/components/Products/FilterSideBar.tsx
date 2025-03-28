@@ -2,10 +2,14 @@ import { useEffect, useState } from "react";
 import { TbCurrencyNaira } from "react-icons/tb";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
+type Filters = {
+  [key: string]: string | string[] | number;
+};
+
 const FilterSideBar = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
-  const [filters, setFilters] = useState({
+  const [filters, setFilters] = useState<Filters>({
     category: "",
     gender: "",
     color: "",
@@ -67,15 +71,19 @@ const FilterSideBar = () => {
     navigate(`?${params.toString()}`);
   };
 
-  const handleFilter = (e: any) => {
+  const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = e.target;
     let newFilter = { ...filters };
 
     if (type === "checkbox") {
       if (checked) {
-        newFilter[name] = [...(newFilter[name] || []), value];
+        newFilter[name] = Array.isArray(newFilter[name])
+          ? [...newFilter[name], value]
+          : [value];
       } else {
-        newFilter[name] = newFilter[name].filter((item) => item !== value);
+        newFilter[name] = (newFilter[name] as string[]).filter(
+          (item: string) => item !== value
+        );
       }
     } else {
       newFilter[name] = value;
@@ -84,7 +92,7 @@ const FilterSideBar = () => {
     updateURLParams(newFilter);
   };
 
-  const handlePriceChange = (e: any) => {
+  const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newPrice = Number(e.target.value);
     setPriceRange([0, newPrice]);
     const newFilter = { ...filters, minPrice: 0, maxPrice: newPrice };
@@ -161,7 +169,7 @@ const FilterSideBar = () => {
           <div key={siz} className="flex items-center mb-1">
             <input
               onChange={handleFilter}
-              checked={filters.size.includes(siz)}
+              checked={Array.isArray(filters.size) && filters.size.includes(siz)}
               value={siz}
               type="checkbox"
               className="mr-2 h-4 w-4 accent-blue-600"
@@ -179,7 +187,7 @@ const FilterSideBar = () => {
           <div key={mater} className="flex items-center mb-1">
             <input
               onChange={handleFilter}
-              checked={filters.material.includes(mater)}
+              checked={Array.isArray(filters.material) && filters.material.includes(mater)}
               value={mater}
               type="checkbox"
               className="mr-2 h-4 w-4 accent-blue-600"
@@ -197,7 +205,7 @@ const FilterSideBar = () => {
           <div key={bran} className="flex items-center mb-1">
             <input
               onChange={handleFilter}
-              checked={filters.brand.includes(bran)}
+              checked={Array.isArray(filters.brand) && filters.brand.includes(bran)}
               value={bran}
               type="checkbox"
               className="mr-2 h-4 w-4 accent-blue-600"

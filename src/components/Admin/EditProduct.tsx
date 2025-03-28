@@ -2,41 +2,59 @@ import { useState } from "react";
 import allImages from "../../assets/shoeoffice.jpg";
 
 const EditProduct = () => {
-  const [productData, setProductData] = useState<string[]>({
-    name: "",
-    description: "",
-    price: 0,
-    countInStock: 0,
-    sku: "",
-    category: "",
-    brand: "",
-    sizes: [],
-    colors: [],
-    collections: "",
-    material: "",
-    gender: "",
-    images: [
-      {
-        url: allImages,
-      },
-      {
-        url: allImages,
-      },
-    ],
-  });
+  const [productData, setProductData] = useState<{
+      name: string;
+      description: string;
+      price: number;
+      countInStock: number;
+      sku: string;
+      category: string;
+      brand: string;
+      sizes: string[];
+      colors: string[];
+      collections: string;
+      material: string;
+      gender: string;
+      images: { url: string; altText: string }[];
+    }>({
+      name: "",
+      description: "",
+      price: 0,
+      countInStock: 0,
+      sku: "",
+      category: "",
+      brand: "",
+      sizes: [],
+      colors: [],
+      collections: "",
+      material: "",
+      gender: "",
+      images: [
+        {
+          url: allImages,
+          altText: "Default Alt Text 1",
+        },
+        {
+          url: allImages,
+          altText: "Default Alt Text 2",
+        },
+      ],
+    });
 
-  const handleChange = (e) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setProductData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleImageload = async (e) => {
+  const handleImageload = async (e: any) => {
     const file = await e.target.files[0];
 
     console.log("Uploaded file", file);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(productData);
   };
@@ -170,7 +188,7 @@ const EditProduct = () => {
               <div key={index}>
                 <img
                   src={image.url}
-                  alt={image.altText || "Product Text"}
+                  alt={image?.altText || "Product Text"}
                   className="w-30 h-24 object-cover rounded shadow"
                 />
               </div>

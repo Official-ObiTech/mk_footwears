@@ -38,7 +38,9 @@ const Search = () => {
             <input
               type="search"
               value={search}
-              onChange={(e) => setSearch(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setSearch(e.target.value)
+              }
               placeholder="Search for footerwears"
               className="input shadow-sm"
             />

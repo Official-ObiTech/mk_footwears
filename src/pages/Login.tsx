@@ -8,7 +8,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   // DECLARE FUNCTIONS
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     console.log({ "forms ": { email, password } });
@@ -33,7 +33,9 @@ const Login = () => {
             <input
               type="email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setEmail(e.target.value)
+              }
               className="input rounded-tr rounded-br focus:border-r-2"
               placeholder="Enter your email"
             />
@@ -43,7 +45,9 @@ const Login = () => {
             <input
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setPassword(e.target.value)
+              }
               className="input rounded-tr rounded-br focus:border-r-2"
               placeholder="Enter your password"
             />

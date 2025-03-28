@@ -9,7 +9,7 @@ interface gridProps {
 }
 
 interface ProductGrids {
-  products: gridProps[];
+  products: gridProps[]
 }
 const ProductGrid: React.FC<ProductGrids> = ({ products }) => {
   return (
